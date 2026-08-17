@@ -9,7 +9,7 @@ import DeviceSelector from './DeviceSelector.vue'
 
 const items = playables
 
-const selected = ref<Playable | null>(items[0] ?? null)
+const selected = ref<Playable | null>(null)
 const device = ref<Device>(defaultDevice)
 const orientation = ref<Orientation>('portrait')
 const reloadToken = ref(0)
@@ -99,10 +99,13 @@ function select(item: Playable) {
 .mobile {
   display: none;
   padding: 16px;
+  /* Отступ сверху с учётом «чёлки» / Dynamic Island на устройствах с вырезом. */
+  padding-top: calc(16px + env(safe-area-inset-top));
 }
 .mobile-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* Адаптивные колонки: ~3 в портрете, больше в альбомном режиме. */
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   gap: 14px;
 }
 .mobile-item {
@@ -129,7 +132,9 @@ function select(item: Playable) {
   color: var(--text-dim);
 }
 
-@media (max-width: 720px) {
+/* Мобильный вид: узкий экран ИЛИ тач-устройство (телефон в любой ориентации,
+   включая альбомную, где ширина > 720px). */
+@media (max-width: 720px), (hover: none) and (pointer: coarse) {
   .split {
     display: none;
   }

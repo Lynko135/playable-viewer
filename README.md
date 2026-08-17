@@ -17,7 +17,7 @@ npm run dev
 
 1. Положи в `public/playables/`:
    - html-файл, напр. `my-game.html` (должен быть **self-contained** — все ассеты внутри);
-   - иконку, напр. `my-game.svg` или `my-game.png` (рекомендуется 256×256).
+   - иконку — `.png`, `.jpg`, `.svg` или `.webp` (рекомендуется 256×256).
 2. Добавь запись в `playables.json` (в корне проекта):
    ```json
    {

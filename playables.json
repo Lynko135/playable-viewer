@@ -1,5 +1,17 @@
 [
   {
+    "id": 3,
+    "name": "Logo puzzle",
+    "html": "/playables/LogoPuzzle.html",
+    "icon": "/playables/LogoPuzzle.png"
+  },
+  {
+    "id": 2,
+    "name": "Flags",
+    "html": "/playables/Flags.html",
+    "icon": "/playables/Flags.png"
+  },
+  {
     "id": 1,
     "name": "Bubble pible",
     "html": "/playables/BubblePible.html",
