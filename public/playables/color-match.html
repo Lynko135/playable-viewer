@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>Color Match</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+      html, body { height: 100%; overflow: hidden; }
+      body {
+        font-family: -apple-system, system-ui, sans-serif; background: #10131a; color: #fff;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        user-select: none; touch-action: manipulation; padding: 20px;
+      }
+      h1 { font-size: 24px; margin-bottom: 6px; }
+      .prompt { font-size: 15px; opacity: .8; margin-bottom: 20px; }
+      .target { width: 90px; height: 90px; border-radius: 18px; margin-bottom: 26px; box-shadow: 0 8px 24px rgba(0,0,0,.4); }
+      .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; width: 100%; max-width: 260px; }
+      .cell { aspect-ratio: 1; border: none; border-radius: 16px; cursor: pointer; transition: transform .08s; }
+      .cell:active { transform: scale(.92); }
+      #msg { margin-top: 20px; font-size: 18px; font-weight: 700; height: 24px; }
+    </style>
+  </head>
+  <body>
+    <h1>Color Match</h1>
+    <div class="prompt">Найди плитку такого же цвета</div>
+    <div class="target" id="target"></div>
+    <div class="grid" id="grid"></div>
+    <div id="msg"></div>
+    <script>
+      var palette = ['#ff5c7c', '#4f8cff', '#39d98a', '#ffb020', '#b47cff', '#22d3ee'];
+      var grid = document.getElementById('grid');
+      var target = document.getElementById('target');
+      var msg = document.getElementById('msg');
+      function shuffle(a) { return a.slice().sort(function () { return Math.sin(a.length * 9301 + Date.parse(new Date().toDateString())) - 0.5 || (Math.round(performance.now()) % 2 ? 1 : -1); }); }
+      function round() {
+        msg.textContent = '';
+        var picks = palette.slice().sort(function () { return performance.now() % 2 ? 1 : -1; }).slice(0, 4);
+        var answer = picks[Math.floor(performance.now()) % 4];
+        target.style.background = answer;
+        grid.innerHTML = '';
+        picks.forEach(function (c) {
+          var b = document.createElement('button');
+          b.className = 'cell';
+          b.style.background = c;
+          b.addEventListener('click', function () {
+            if (c === answer) { msg.style.color = '#39d98a'; msg.textContent = 'Верно! 🎉'; setTimeout(round, 700); }
+            else { msg.style.color = '#ff5c7c'; msg.textContent = 'Мимо'; }
+          });
+          grid.appendChild(b);
+        });
+      }
+      round();
+    </script>
+  </body>
+</html>

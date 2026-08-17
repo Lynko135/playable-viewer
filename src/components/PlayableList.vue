@@ -4,25 +4,17 @@ import type { Playable } from '../types'
 defineProps<{
   items: Playable[]
   selectedId: string | null
-  loading: boolean
 }>()
 
 const emit = defineEmits<{ select: [item: Playable] }>()
-
-function fmtDate(iso: string) {
-  return new Date(iso).toLocaleDateString('ru-RU', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-  })
-}
 </script>
 
 <template>
   <aside class="list">
     <div class="list-head">Плейблы <span class="count">{{ items.length }}</span></div>
-    <div v-if="loading" class="hint">Загрузка…</div>
-    <div v-else-if="!items.length" class="hint">Пока пусто</div>
+    <div v-if="!items.length" class="hint">
+      Пусто. Добавь записи в <code>playables.json</code> и файлы в <code>public/playables/</code>.
+    </div>
     <ul v-else class="items">
       <li
         v-for="item in items"
@@ -31,8 +23,8 @@ function fmtDate(iso: string) {
         :class="{ active: item.id === selectedId }"
         @click="emit('select', item)"
       >
+        <img class="icon" :src="item.icon" :alt="item.name" loading="lazy" />
         <span class="name">{{ item.name }}</span>
-        <span class="date">{{ fmtDate(item.created_at) }}</span>
       </li>
     </ul>
   </aside>
@@ -40,6 +32,7 @@ function fmtDate(iso: string) {
 
 <style scoped>
 .list {
+  --icon-size: 88px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -64,6 +57,12 @@ function fmtDate(iso: string) {
   padding: 16px;
   color: var(--text-dim);
   font-size: 14px;
+  line-height: 1.5;
+}
+.hint code {
+  background: var(--bg-elev);
+  padding: 1px 5px;
+  border-radius: 4px;
 }
 .items {
   list-style: none;
@@ -77,8 +76,8 @@ function fmtDate(iso: string) {
   border-radius: var(--radius);
   cursor: pointer;
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  align-items: center;
+  gap: 14px;
 }
 .item:hover {
   background: var(--bg-elev);
@@ -86,11 +85,17 @@ function fmtDate(iso: string) {
 .item.active {
   background: var(--accent-dim);
 }
-.name {
-  font-size: 14px;
+.icon {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  border-radius: 18px;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: var(--bg-elev);
 }
-.date {
-  font-size: 12px;
-  color: var(--text-dim);
+.name {
+  font-size: 15px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
 }
 </style>

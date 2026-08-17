@@ -1,23 +1,14 @@
 <script setup lang="ts">
-import { RouterView, useRoute } from 'vue-router'
-import { computed } from 'vue'
-import AppHeader from './components/AppHeader.vue'
-import { isConfigured } from './lib/supabase'
-
-const route = useRoute()
-// На странице полноэкранного проигрывания шапку не показываем.
-const showHeader = computed(() => route.name !== 'play')
+import Viewer from './components/Viewer.vue'
 </script>
 
 <template>
   <div class="app">
-    <div v-if="!isConfigured" class="config-warn">
-      ⚠️ Supabase не настроен: задай <code>VITE_SUPABASE_URL</code> и
-      <code>VITE_SUPABASE_ANON_KEY</code> (см. README).
-    </div>
-    <AppHeader v-if="showHeader" />
-    <main class="app-main" :class="{ 'no-header': !showHeader }">
-      <RouterView />
+    <header class="app-header">
+      <span class="brand">🎮 Playable Viewer</span>
+    </header>
+    <main class="app-main">
+      <Viewer />
     </main>
   </div>
 </template>
@@ -28,21 +19,21 @@ const showHeader = computed(() => route.name !== 'play')
   display: flex;
   flex-direction: column;
 }
+.app-header {
+  height: var(--header-h);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-panel);
+}
+.brand {
+  font-weight: 700;
+  font-size: 17px;
+}
 .app-main {
   flex: 1;
   min-height: 0;
-}
-.config-warn {
-  background: #4a2e00;
-  color: #ffd78a;
-  font-size: 13px;
-  padding: 8px 16px;
-  text-align: center;
-  flex-shrink: 0;
-}
-.config-warn code {
-  background: rgba(0, 0, 0, 0.3);
-  padding: 1px 5px;
-  border-radius: 4px;
 }
 </style>

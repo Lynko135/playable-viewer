@@ -1,0 +1,14 @@
+[
+  {
+    "id": "tap-blast",
+    "name": "Tap Blast",
+    "html": "/playables/tap-blast.html",
+    "icon": "/playables/tap-blast.svg"
+  },
+  {
+    "id": "color-match",
+    "name": "Color Match",
+    "html": "/playables/color-match.html",
+    "icon": "/playables/color-match.svg"
+  }
+]

@@ -1,31 +1,25 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
-import { RouterLink } from 'vue-router'
-import { usePlayablesStore } from '../stores/playables'
-import { publicUrl } from '../lib/supabase'
+import { computed, ref } from 'vue'
+import { playables } from '../data/playables'
 import { defaultDevice, type Device, type Orientation } from '../data/devices'
 import type { Playable } from '../types'
-import PlayableList from '../components/PlayableList.vue'
-import PhoneFrame from '../components/PhoneFrame.vue'
-import DeviceSelector from '../components/DeviceSelector.vue'
+import PlayableList from './PlayableList.vue'
+import PhoneFrame from './PhoneFrame.vue'
+import DeviceSelector from './DeviceSelector.vue'
 
-const store = usePlayablesStore()
+const items = playables
 
-const selected = ref<Playable | null>(null)
+const selected = ref<Playable | null>(items[0] ?? null)
 const device = ref<Device>(defaultDevice)
 const orientation = ref<Orientation>('portrait')
 const reloadToken = ref(0)
 
-const selectedUrl = computed(() => (selected.value ? publicUrl(selected.value.storage_path) : null))
+const selectedUrl = computed(() => selected.value?.html ?? null)
 
 function select(item: Playable) {
   selected.value = item
   reloadToken.value++
 }
-
-onMounted(async () => {
-  if (!store.items.length) await store.fetchAll()
-})
 </script>
 
 <template>
@@ -33,9 +27,8 @@ onMounted(async () => {
   <div class="split">
     <PlayableList
       class="pane-list"
-      :items="store.items"
+      :items="items"
       :selected-id="selected?.id ?? null"
-      :loading="store.loading"
       @select="select"
     />
     <section class="pane-view">
@@ -56,16 +49,17 @@ onMounted(async () => {
     </section>
   </div>
 
-  <!-- Мобильный: только текстовый список, открытие на новой странице -->
+  <!-- Мобильный: текстовый список, открытие плейбла в новой вкладке -->
   <div class="mobile">
     <h1 class="mobile-title">Плейблы</h1>
-    <p v-if="store.loading" class="hint">Загрузка…</p>
-    <p v-else-if="!store.items.length" class="hint">Пока пусто</p>
+    <p v-if="!items.length" class="hint">Пока пусто</p>
     <ul v-else class="mobile-items">
-      <li v-for="item in store.items" :key="item.id">
-        <RouterLink :to="{ name: 'play', params: { id: item.id } }" class="mobile-item">
-          {{ item.name }}
-        </RouterLink>
+      <li v-for="item in items" :key="item.id">
+        <a class="mobile-item" :href="item.html" target="_blank" rel="noopener">
+          <img class="mobile-icon" :src="item.icon" :alt="item.name" loading="lazy" />
+          <span class="mobile-name">{{ item.name }}</span>
+          <span class="mobile-arrow">↗</span>
+        </a>
       </li>
     </ul>
   </div>
@@ -74,7 +68,7 @@ onMounted(async () => {
 <style scoped>
 .split {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 320px 1fr;
   height: 100%;
 }
 .pane-list {
@@ -110,16 +104,33 @@ onMounted(async () => {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 .mobile-item {
-  display: block;
-  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
   background: var(--bg-panel);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   color: var(--text);
+}
+.mobile-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: var(--bg-elev);
+}
+.mobile-name {
+  flex: 1;
   font-size: 16px;
+  font-weight: 500;
+}
+.mobile-arrow {
+  color: var(--text-dim);
 }
 .hint {
   color: var(--text-dim);

@@ -1,47 +1,53 @@
 # Playable Viewer
 
-Веб-приложение для хранения и онлайн-просмотра playable-креативов (self-contained HTML).
-Просмотр публичный по ссылке, добавление/удаление — только для админа.
+Статический сайт для просмотра playable-креативов (self-contained HTML).
+Одна страница: список с иконками слева, превью в рамке телефона справа.
+Бэкенда нет — контент добавляется правкой `playables.json` и файлами в `public/playables/`.
 
-Стек: Vue 3 + TypeScript + Vite + Pinia + Vue Router, бэкенд — Supabase (Auth + Postgres + Storage).
-ТЗ — в [SPEC.md](SPEC.md).
-
-## Локальный запуск
+## Запуск
 
 ```bash
 npm install
-cp .env.example .env.local   # подставь значения из Supabase
 npm run dev
 ```
 
-## Настройка Supabase
+Открой http://localhost:5173
 
-1. Создай проект на [supabase.com](https://supabase.com).
-2. **SQL Editor** → выполни [`supabase/schema.sql`](supabase/schema.sql) (создаст таблицу, бакет и RLS-политики).
-3. **Authentication → Providers → Email** → отключи «Allow new users to sign up» (публичной регистрации быть не должно).
-4. **Authentication → Users → Add user** → заведи свой админ-аккаунт (email + пароль).
-5. **Project Settings → API** → скопируй `Project URL` и `anon public key` в `.env.local`:
+## Как добавить плейбл
+
+1. Положи в `public/playables/`:
+   - html-файл, напр. `my-game.html` (должен быть **self-contained** — все ассеты внутри);
+   - иконку, напр. `my-game.svg` или `my-game.png` (рекомендуется 256×256).
+2. Добавь запись в `playables.json` (в корне проекта):
+   ```json
+   {
+     "id": "my-game",
+     "name": "My Game",
+     "html": "/playables/my-game.html",
+     "icon": "/playables/my-game.svg"
+   }
    ```
-   VITE_SUPABASE_URL=...
-   VITE_SUPABASE_ANON_KEY=...
-   ```
+   Пути — это URL от корня сайта (то, что лежит в `public/`, отдаётся из корня).
+3. В dev-режиме изменения подхватятся автоматически; для прода — закоммить и запушь.
 
-> `anon key` публичный по дизайну — он попадает в собранный фронтенд. Защиту записи обеспечивает RLS.
+## Сборка
 
-## Деплой на Vercel
+```bash
+npm run build      # проверка типов + сборка в dist/
+npm run preview    # локальный просмотр собранной версии
+```
 
-1. Запушь репозиторий на GitHub.
-2. На [vercel.com](https://vercel.com) → New Project → импортируй репозиторий (framework определится как Vite).
-3. В **Environment Variables** добавь `VITE_SUPABASE_URL` и `VITE_SUPABASE_ANON_KEY`.
-4. Deploy. Ссылкой на выданный домен делишься для просмотра.
+## Деплой (бесплатно)
 
-SPA-роутинг настроен в [`vercel.json`](vercel.json) (все пути → `index.html`).
+Любой статик-хостинг. Сборка — `npm run build`, каталог — `dist`.
 
-## Скрипты
+- **Vercel / Netlify:** подключить GitHub-репозиторий, framework = Vite, build = `npm run build`, output = `dist`. Автодеплой на push.
+- **GitHub Pages:** собрать и опубликовать `dist` (напр. через GitHub Actions). Если сайт живёт не в корне домена (`user.github.io/repo/`), задать `base` в `vite.config.ts`.
 
-| Команда | Действие |
-|---|---|
-| `npm run dev` | дев-сервер |
-| `npm run build` | типизация + прод-сборка |
-| `npm run preview` | предпросмотр сборки |
-| `npm run typecheck` | только проверка типов |
+Ссылкой на выданный адрес делишься — сторонние пользователи смотрят плейблы,
+добавлять можешь только ты (через коммиты в репозиторий).
+
+## Настройки
+
+- Размер иконок в списке — переменная `--icon-size` в `src/components/PlayableList.vue`.
+- Пресеты устройств — `src/data/devices.ts`.
