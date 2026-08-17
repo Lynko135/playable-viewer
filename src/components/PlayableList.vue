@@ -22,7 +22,7 @@ const emit = defineEmits<{ select: [item: Playable] }>()
         :class="{ active: item.id === selectedId }"
         @click="emit('select', item)"
       >
-        <img class="icon" :src="item.icon" :alt="item.name" loading="lazy" />
+        <img class="icon" :src="item.icon" :alt="item.name" loading="lazy" draggable="false" />
         <span class="name">{{ item.name }}</span>
       </button>
     </div>
@@ -84,6 +84,13 @@ const emit = defineEmits<{ select: [item: Playable] }>()
   border-radius: 20px;
   object-fit: cover;
   background: var(--bg-elev);
+  transition: transform 0.15s ease;
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+.card:active .icon {
+  transform: scale(0.9);
 }
 .name {
   font-size: 14px;

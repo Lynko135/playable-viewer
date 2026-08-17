@@ -61,7 +61,7 @@ function select(item: Playable) {
         target="_blank"
         rel="noopener"
       >
-        <img class="mobile-icon" :src="item.icon" :alt="item.name" loading="lazy" />
+        <img class="mobile-icon" :src="item.icon" :alt="item.name" loading="lazy" draggable="false" />
         <span class="mobile-name">{{ item.name }}</span>
       </a>
     </div>
@@ -121,6 +121,13 @@ function select(item: Playable) {
   border-radius: 18px;
   object-fit: cover;
   background: var(--bg-elev);
+  transition: transform 0.15s ease;
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+.mobile-item:active .mobile-icon {
+  transform: scale(0.9);
 }
 .mobile-name {
   font-size: 13px;
