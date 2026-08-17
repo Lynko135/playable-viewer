@@ -3,7 +3,7 @@ import type { Playable } from '../types'
 
 defineProps<{
   items: Playable[]
-  selectedId: string | null
+  selectedId: number | null
 }>()
 
 const emit = defineEmits<{ select: [item: Playable] }>()
@@ -11,47 +11,32 @@ const emit = defineEmits<{ select: [item: Playable] }>()
 
 <template>
   <aside class="list">
-    <div class="list-head">Плейблы <span class="count">{{ items.length }}</span></div>
     <div v-if="!items.length" class="hint">
-      Пусто. Добавь записи в <code>playables.json</code> и файлы в <code>public/playables/</code>.
+      Empty. Add entries to <code>playables.json</code> and files to <code>public/playables/</code>.
     </div>
-    <ul v-else class="items">
-      <li
+    <div v-else class="grid">
+      <button
         v-for="item in items"
         :key="item.id"
-        class="item"
+        class="card"
         :class="{ active: item.id === selectedId }"
         @click="emit('select', item)"
       >
         <img class="icon" :src="item.icon" :alt="item.name" loading="lazy" />
         <span class="name">{{ item.name }}</span>
-      </li>
-    </ul>
+      </button>
+    </div>
   </aside>
 </template>
 
 <style scoped>
 .list {
-  --icon-size: 88px;
   height: 100%;
   display: flex;
   flex-direction: column;
   background: var(--bg-panel);
   border-right: 1px solid var(--border);
   overflow: hidden;
-}
-.list-head {
-  padding: 16px;
-  font-weight: 600;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.count {
-  color: var(--text-dim);
-  font-weight: 400;
-  font-size: 13px;
 }
 .hint {
   padding: 16px;
@@ -64,38 +49,46 @@ const emit = defineEmits<{ select: [item: Playable] }>()
   padding: 1px 5px;
   border-radius: 4px;
 }
-.items {
-  list-style: none;
-  margin: 0;
-  padding: 8px;
-  overflow-y: auto;
+.grid {
   flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-auto-rows: min-content;
+  gap: 16px;
 }
-.item {
-  padding: 10px 12px;
-  border-radius: var(--radius);
-  cursor: pointer;
+.card {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
 }
-.item:hover {
+.card:hover {
   background: var(--bg-elev);
 }
-.item.active {
+.card.active {
   background: var(--accent-dim);
+  border-color: var(--accent);
 }
 .icon {
-  width: var(--icon-size);
-  height: var(--icon-size);
-  border-radius: 18px;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 20px;
   object-fit: cover;
-  flex-shrink: 0;
   background: var(--bg-elev);
 }
 .name {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
+  text-align: center;
   overflow-wrap: anywhere;
 }
 </style>

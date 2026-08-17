@@ -49,26 +49,32 @@ function select(item: Playable) {
     </section>
   </div>
 
-  <!-- Мобильный: текстовый список, открытие плейбла в новой вкладке -->
+  <!-- Мобильный: грид карточек, открытие плейбла в новой вкладке -->
   <div class="mobile">
-    <h1 class="mobile-title">Плейблы</h1>
-    <p v-if="!items.length" class="hint">Пока пусто</p>
-    <ul v-else class="mobile-items">
-      <li v-for="item in items" :key="item.id">
-        <a class="mobile-item" :href="item.html" target="_blank" rel="noopener">
-          <img class="mobile-icon" :src="item.icon" :alt="item.name" loading="lazy" />
-          <span class="mobile-name">{{ item.name }}</span>
-          <span class="mobile-arrow">↗</span>
-        </a>
-      </li>
-    </ul>
+    <p v-if="!items.length" class="hint">Nothing here yet</p>
+    <div v-else class="mobile-grid">
+      <a
+        v-for="item in items"
+        :key="item.id"
+        class="mobile-item"
+        :href="item.html"
+        target="_blank"
+        rel="noopener"
+      >
+        <img class="mobile-icon" :src="item.icon" :alt="item.name" loading="lazy" />
+        <span class="mobile-name">{{ item.name }}</span>
+      </a>
+    </div>
   </div>
 </template>
 
 <style scoped>
 .split {
   display: grid;
-  grid-template-columns: 320px 1fr;
+  grid-template-columns: 1fr 1fr;
+  /* Строка ограничена высотой контейнера и не растёт под layout-бокс телефона
+     (transform: scale уменьшает его лишь визуально), иначе появляется скролл. */
+  grid-template-rows: minmax(0, 1fr);
   height: 100%;
 }
 .pane-list {
@@ -94,43 +100,30 @@ function select(item: Playable) {
   display: none;
   padding: 16px;
 }
-.mobile-title {
-  font-size: 20px;
-  margin: 4px 0 16px;
-}
-.mobile-items {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.mobile-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
 }
 .mobile-item {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 14px;
-  padding: 12px 14px;
-  background: var(--bg-panel);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  gap: 8px;
   color: var(--text);
 }
 .mobile-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 18px;
   object-fit: cover;
-  flex-shrink: 0;
   background: var(--bg-elev);
 }
 .mobile-name {
-  flex: 1;
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 500;
-}
-.mobile-arrow {
-  color: var(--text-dim);
+  text-align: center;
+  overflow-wrap: anywhere;
 }
 .hint {
   color: var(--text-dim);

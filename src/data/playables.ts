@@ -3,4 +3,5 @@ import type { Playable } from '../types'
 // добавил запись в playables.json → пересборка (или HMR в dev) подхватит.
 import raw from '../../playables.json'
 
-export const playables = raw as Playable[]
+// Сортировка по убыванию id: у кого число больше — тот выше в гриде.
+export const playables = (raw as Playable[]).slice().sort((a, b) => b.id - a.id)

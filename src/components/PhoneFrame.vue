@@ -15,6 +15,8 @@ const h = computed(() => (props.orientation === 'portrait' ? props.device.height
 
 // Толщина рамки телефона.
 const BEZEL = 14
+// Доля от максимального вписывающегося размера (превью занимает 80%).
+const FILL = 0.8
 
 const stage = ref<HTMLElement | null>(null)
 const scale = ref(1)
@@ -26,7 +28,7 @@ function recompute() {
   const availH = el.clientHeight - 24
   const frameW = w.value + BEZEL * 2
   const frameH = h.value + BEZEL * 2
-  scale.value = Math.min(1, availW / frameW, availH / frameH)
+  scale.value = Math.min(1, availW / frameW, availH / frameH) * FILL
 }
 
 let ro: ResizeObserver | null = null
@@ -59,7 +61,7 @@ watch([w, h], recompute)
           sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups"
           referrerpolicy="no-referrer"
         />
-        <div v-else class="placeholder">Выбери плейбл слева</div>
+        <div v-else class="placeholder">Select a playable on the left</div>
       </div>
     </div>
   </div>

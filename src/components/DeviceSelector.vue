@@ -30,11 +30,11 @@ function toggleOrientation(current: Orientation) {
         {{ d.name }} · {{ d.width }}×{{ d.height }}
       </option>
     </select>
-    <button class="btn" title="Повернуть" @click="toggleOrientation(orientation)">
-      {{ orientation === 'portrait' ? '⇅ Портрет' : '⇄ Ландшафт' }}
+    <button class="btn" title="Rotate" @click="toggleOrientation(orientation)">
+      {{ orientation === 'portrait' ? '⇅ Portrait' : '⇄ Landscape' }}
     </button>
-    <button class="btn" title="Перезапустить плейбл" @click="emit('reload')">
-      ↻ Перезапустить
+    <button class="btn" title="Restart playable" @click="emit('reload')">
+      ↻ Restart
     </button>
   </div>
 </template>
