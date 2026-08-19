@@ -45,6 +45,7 @@ function select(item: Playable) {
         :orientation="orientation"
         :url="selectedUrl"
         :reload-token="reloadToken"
+        @reload="reloadToken++"
       />
     </section>
   </div>
