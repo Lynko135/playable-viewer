@@ -1,18 +1,85 @@
 [
+
   {
-    "id": 3,
+    "id": 44,
+    "name": "Mozaic match",
+    "html": "/playables/MozaicMatch.html",
+    "icon": "/playables/MozaicMatch.jpg"
+  },
+  {
+    "id": 43,
+    "name": "Tetris chain",
+    "html": "/playables/TetrisChain.html",
+    "icon": "/playables/TetrisChain.jpg"
+  },
+  {
+    "id": 42,
+    "name": "Tetris 3d",
+    "html": "/playables/Tetris3d.html",
+    "icon": "/playables/Tetris3d.jpg"
+  },
+  {
+    "id": 41,
+    "name": "Total battle",
+    "html": "/playables/TotalBattle.html",
+    "icon": "/playables/TotalBattle.jpg"
+  },
+  {
+        "id": 40,
+        "name": "Hexago cylinder",
+        "html": "/playables/HexagoCylinder.html",
+        "icon": "/playables/HexagoCylinder.jpg"
+    },
+    {
+        "id": 39,
+        "name": "Woodoku Blast",
+        "html": "/playables/WoodokuBlast.html",
+        "icon": "/playables/WoodokuBlast.jpg"
+    },
+    {
+        "id": 38,
+        "name": "Idle Cult",
+        "html": "/playables/IdleCult.html",
+        "icon": "/playables/IdleCult.jpg"
+    },
+    {
+        "id": 37,
+        "name": "Snake attack",
+        "html": "/playables/SnakeAttack.html",
+        "icon": "/playables/SnakeAttack.jpg"
+    },
+    {
+        "id": 36,
+        "name": "Tiles characters",
+        "html": "/playables/TilesCharacters.html",
+        "icon": "/playables/TilesCharacters.jpg"
+    },
+  {
+    "id": 35,
+    "name": "Wordscapes",
+    "html": "/playables/Wordscapes.html",
+    "icon": "/playables/Wordscapes.jpg"
+  },
+  {
+    "id": 34,
+    "name": "Equations",
+    "html": "/playables/Equations.html",
+    "icon": "/playables/Equations.jpg"
+  },
+  {
+    "id": 33,
     "name": "Logo puzzle",
     "html": "/playables/LogoPuzzle.html",
     "icon": "/playables/LogoPuzzle.jpg"
   },
   {
-    "id": 2,
+    "id": 32,
     "name": "Flags",
     "html": "/playables/Flags.html",
     "icon": "/playables/Flags.jpg"
   },
   {
-    "id": 1,
+    "id": 31,
     "name": "Bubble pible",
     "html": "/playables/BubblePible.html",
     "icon": "/playables/BubblePible.jpg"
