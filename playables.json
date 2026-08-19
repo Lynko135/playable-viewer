@@ -1,6 +1,156 @@
 [
 
   {
+    "id": 69,
+    "name": "Picture assembly",
+    "html": "/playables/PictureAssembly.html",
+    "icon": "/playables/PictureAssembly.jpg"
+  },
+  {
+    "id": 68,
+    "name": "Monopoly Bingo",
+    "html": "/playables/MonopolyBingo.html",
+    "icon": "/playables/MonopolyBingo.jpg"
+  },
+  {
+    "id": 67,
+    "name": "Word Blast",
+    "html": "/playables/WordBlast.html",
+    "icon": "/playables/WordBlast.jpg"
+  },
+  {
+    "id": 87,
+    "name": "Sponge",
+    "html": "/playables/Sponge.html",
+    "icon": "/playables/Sponge.jpg"
+  },
+  {
+    "id": 93,
+    "name": "Bubbles",
+    "html": "/playables/Bubbles.html",
+    "icon": "/playables/Bubbles.jpg"
+  },
+  {
+    "id": 64,
+    "name": "Paper boy",
+    "html": "/playables/PaperBoy.html",
+    "icon": "/playables/PaperBoy.jpg"
+  },
+  {
+    "id": 63,
+    "name": "Fly challenge",
+    "html": "/playables/FlyChallenge.html",
+    "icon": "/playables/FlyChallenge.jpg"
+  },
+  {
+    "id": 62,
+    "name": "Ride master",
+    "html": "/playables/RideMaster.html",
+    "icon": "/playables/RideMaster.jpg"
+  },
+  {
+    "id": 83,
+    "name": "Kill zombie",
+    "html": "/playables/KillZombie.html",
+    "icon": "/playables/KillZombie.jpg"
+  },
+  {
+    "id": 60,
+    "name": "Snake out",
+    "html": "/playables/SnakeOut.html",
+    "icon": "/playables/SnakeOut.jpg"
+  },
+  {
+    "id": 59,
+    "name": "Idle cutter",
+    "html": "/playables/IdleCutter.html",
+    "icon": "/playables/IdleCutter.jpg"
+  },
+  {
+    "id": 58,
+    "name": "Crazy zombie",
+    "html": "/playables/CrazyZombie.html",
+    "icon": "/playables/CrazyZombie.jpg"
+  },
+  {
+    "id": 57,
+    "name": "Solitaire",
+    "html": "/playables/Solitaire.html",
+    "icon": "/playables/Solitaire.jpg"
+  },
+  {
+    "id": 81,
+    "name": "Blossom match",
+    "html": "/playables/BlossomMatch.html",
+    "icon": "/playables/BlossomMatch.jpg"
+  },
+  {
+    "id": 55,
+    "name": "Tetris classic",
+    "html": "/playables/ClassicTetris.html",
+    "icon": "/playables/ClassicTetris.jpg"
+  },
+  {
+    "id": 54,
+    "name": "Tetris freeplace",
+    "html": "/playables/TetrisFreeplace.html",
+    "icon": "/playables/TetrisFreeplace.jpg"
+  },
+  {
+    "id": 98,
+    "name": "Tower",
+    "html": "/playables/Tower.html",
+    "icon": "/playables/Tower.jpg"
+  },
+  {
+    "id": 52,
+    "name": "Woodoku",
+    "html": "/playables/Woodoku.html",
+    "icon": "/playables/Woodoku.jpg"
+  },
+  {
+    "id": 51,
+    "name": "Woodoku squid",
+    "html": "/playables/WoodokuSquid.html",
+    "icon": "/playables/WoodokuSquid.jpg"
+  },
+  {
+    "id": 96,
+    "name": "Sleaping hexas",
+    "html": "/playables/SleapingHexas.html",
+    "icon": "/playables/SleapingHexas.jpg"
+  },
+  {
+    "id": 84,
+    "name": "Puzsolitaire",
+    "html": "/playables/Puzsolitaire.html",
+    "icon": "/playables/Puzsolitaire.jpg"
+  },
+  {
+    "id": 48,
+    "name": "Knife throw",
+    "html": "/playables/KnifeThrow.html",
+    "icon": "/playables/KnifeThrow.jpg"
+  },
+  {
+    "id": 90,
+    "name": "Spring water",
+    "html": "/playables/SpringWater.html",
+    "icon": "/playables/SpringWater.jpg"
+  },
+  {
+    "id": 46,
+    "name": "Log brige",
+    "html": "/playables/LogBrige.html",
+    "icon": "/playables/LogBrige.jpg"
+  },
+  {
+    "id": 91,
+    "name": "Buy farm",
+    "html": "/playables/BuyFarm.html",
+    "icon": "/playables/BuyFarm.jpg"
+  },
+  {
     "id": 44,
     "name": "Mozaic match",
     "html": "/playables/MozaicMatch.html",
@@ -13,55 +163,55 @@
     "icon": "/playables/TetrisChain.jpg"
   },
   {
-    "id": 42,
+    "id": 85,
     "name": "Tetris 3d",
     "html": "/playables/Tetris3d.html",
     "icon": "/playables/Tetris3d.jpg"
   },
   {
-    "id": 41,
+    "id": 86,
     "name": "Total battle",
     "html": "/playables/TotalBattle.html",
     "icon": "/playables/TotalBattle.jpg"
   },
   {
-        "id": 40,
+        "id": 92,
         "name": "Hexago cylinder",
         "html": "/playables/HexagoCylinder.html",
         "icon": "/playables/HexagoCylinder.jpg"
     },
     {
-        "id": 39,
+        "id": 82,
         "name": "Woodoku Blast",
         "html": "/playables/WoodokuBlast.html",
         "icon": "/playables/WoodokuBlast.jpg"
     },
     {
-        "id": 38,
+        "id": 94,
         "name": "Idle Cult",
         "html": "/playables/IdleCult.html",
         "icon": "/playables/IdleCult.jpg"
     },
     {
-        "id": 37,
+        "id": 95,
         "name": "Snake attack",
         "html": "/playables/SnakeAttack.html",
         "icon": "/playables/SnakeAttack.jpg"
     },
     {
-        "id": 36,
+        "id": 88,
         "name": "Tiles characters",
         "html": "/playables/TilesCharacters.html",
         "icon": "/playables/TilesCharacters.jpg"
     },
   {
-    "id": 35,
+    "id": 100,
     "name": "Wordscapes",
     "html": "/playables/Wordscapes.html",
     "icon": "/playables/Wordscapes.jpg"
   },
   {
-    "id": 34,
+    "id": 97,
     "name": "Equations",
     "html": "/playables/Equations.html",
     "icon": "/playables/Equations.jpg"
@@ -73,13 +223,13 @@
     "icon": "/playables/LogoPuzzle.jpg"
   },
   {
-    "id": 32,
+    "id": 99,
     "name": "Flags",
     "html": "/playables/Flags.html",
     "icon": "/playables/Flags.jpg"
   },
   {
-    "id": 31,
+    "id": 89,
     "name": "Bubble pible",
     "html": "/playables/BubblePible.html",
     "icon": "/playables/BubblePible.jpg"
